@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if mantenimiento %}
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">EmpleadoID</th>
+        <th scope="col">EquipoID</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Tipo de Mantenimiento</th>
+        <th scope="col">acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for mantenimiento in mantenimiento %}
+      <tr class="table-info">
+        <td>{{ mantenimiento.id}}</td>
+        <td>{{ mantenimiento.EmpleadoId}}</td>
+        <td>{{ mantenimiento.EquipoId}}</td>
+        <td>{{ mantenimiento.fecha}}</td>
+        <td>{{ mantenimiento.tipoMantenimiento}}</td>
+        <td> 
+            <a href="{% url 'delete' mantenimiento.id %}" class="btn btn-primary">eliminar</a>    
+            <a href="{% url 'update' mantenimiento.id %}" class="btn btn-primary">editar</a>    
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% else %}
+
+<h1>No hay registros</h1>
+
+{% endif %}
+
+{% endblock %}
